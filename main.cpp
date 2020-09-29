@@ -105,16 +105,6 @@ void control(sf::RenderWindow& window, sf::CircleShape& player, sf::Event& event
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            if (event.type == sf::Event::KeyPressed) {
-                switch(event.key.code) {
-                    case (sf::Keyboard::Left):
-                        player.rotate(-15);
-                        break;
-                    case (sf::Keyboard::Right):
-                        player.rotate(15);
-                        break;
-                }
-            }
         }
             if ((sf::Joystick::isButtonPressed(0, 4)) && (sf::Joystick::isButtonPressed(0, 5))) {
                 player.rotate(0);
