@@ -32,4 +32,5 @@
 *.app
 
 #Dirs
+.vscode/
 build/
