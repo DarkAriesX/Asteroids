@@ -68,16 +68,16 @@ int main() {
     scoreText.setCharacterSize(40);
     scoreText.setString(generateScoreText(0));
 
-    std::thread controlThread(control, std::ref(window), std::ref(player), std::ref(event));
-    controlThread.detach();
+    std::thread* controlThread = new std::thread(control, std::ref(window), std::ref(player), std::ref(event));
+    controlThread->detach();
 
-    std::thread fireThread(fire, std::ref(window), std::ref(player), 
+    std::thread* fireThread = new std::thread(fire, std::ref(window), std::ref(player), 
                             std::ref(event), std::ref(bullet));
-    fireThread.detach();
+    fireThread->detach();
 
-    std::thread asteroidMoveThread(asteroidMove, std::ref(window), std::ref(player), 
+    std::thread* asteroidMoveThread = new std::thread(asteroidMove, std::ref(window), std::ref(player), 
                                     std::ref(asteroid), std::ref(bullet), std::ref(scoreText));
-    asteroidMoveThread.detach();
+    asteroidMoveThread->detach();
 
     while(window.isOpen()) {  
         window.clear();
@@ -97,6 +97,9 @@ int main() {
         window.draw(scoreText);
         window.display();
     }
+    delete controlThread;
+    delete fireThread;
+    delete asteroidMoveThread;
     return 0;
 }
 void control(sf::RenderWindow& window, sf::CircleShape& player, sf::Event& event) {
