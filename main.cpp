@@ -19,14 +19,6 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Asteroids", sf::Style::Default, settings);
     window.display();
 
-    #if OS_Windows
-        window.close();
-        std::cerr << "Install linux to play game!\n";
-    #elif __APPLE__
-        window.close();
-        std::cerr << "Buy normal PC and install linux to play game!\n";
-    #endif
-
     sf::Event event;
 
     sf::CircleShape player(20.f, 3);
